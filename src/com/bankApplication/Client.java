@@ -5,9 +5,9 @@ import java.util.ArrayList;
 /**
  * Created by Тыминская on 21.02.2016.
  */
-public class Client implements Account, Report{
+public class Client implements  Report{
     private String name;
-    List<Account> accounts = new ArrayList<Account>();
+    private List<Account> accounts = new ArrayList<Account>();
     private Account activeAccount;
     private float initialOverdraft;
     Client () {
@@ -54,7 +54,7 @@ public class Client implements Account, Report{
         }
         else if (accountType == "C"){
             Account newCheckAccount = new CheckingAccount();
-            //newCheckAccount.overdraft = initialOverdraft;
+            newCheckAccount.setOverdraft(initialOverdraft);
             accounts.add(newCheckAccount);
             return newCheckAccount;
         }
@@ -68,5 +68,6 @@ public class Client implements Account, Report{
             a.printReport();
         }
     }
+
 
 }

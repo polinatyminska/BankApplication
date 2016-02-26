@@ -46,7 +46,7 @@ public class BankApplication {
         Account secondClientCheckAcct = secondClient.createAccount("C");
         secondClientCheckAcct.deposit(500);
         secondClientCheckAcct.withdraw(100);
-        //secondClientCheckAcct.setOverdraft(400);
+        secondClientCheckAcct.setOverdraft(400);
         secondClientCheckAcct.withdraw(15);
     }
 }
