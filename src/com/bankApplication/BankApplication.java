@@ -1,5 +1,6 @@
 package com.bankApplication;
 //import com.events.EmailNotificationListener;
+import com.com.exception.OverdraftLimitExceededException;
 import com.events.EventNotificationListener;
 //import com.events.PrintClientListener;
 
@@ -38,15 +39,17 @@ public class BankApplication {
         Account firstClientSavAcct = firstClient.createAccount("S");
         firstClientSavAcct.deposit(1000);
         Account firstClientCheckAcct = firstClient.createAccount("C");
-        firstClientCheckAcct.withdraw(200);
-        firstClientSavAcct.withdraw(300);
-
 
         testBank.addClient(secondClient);
         Account secondClientCheckAcct = secondClient.createAccount("C");
         secondClientCheckAcct.deposit(500);
-        secondClientCheckAcct.withdraw(100);
-        secondClientCheckAcct.setOverdraft(400);
-        secondClientCheckAcct.withdraw(15);
+        try {
+            firstClientCheckAcct.withdraw(200);
+            firstClientSavAcct.withdraw(300);
+            secondClientCheckAcct.withdraw(10000);
+        }
+        catch (OverdraftLimitExceededException e) {System.out.println("Not enough funds");};
+       // secondClientCheckAcct.setOverdraft(400);
+      //  secondClientCheckAcct.withdraw(15);
     }
 }

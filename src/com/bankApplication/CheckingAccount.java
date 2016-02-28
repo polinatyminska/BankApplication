@@ -1,5 +1,7 @@
 package com.bankApplication;
 
+import com.com.exception.OverdraftLimitExceededException;
+
 /**
  * Created by Тыминская on 21.02.2016.
  */
@@ -15,11 +17,11 @@ public class CheckingAccount extends AbstractAccount {
         return overdraft;
     }
 
-    public void withdraw (float x){
+    public void withdraw (float x) throws OverdraftLimitExceededException{
 
         if (getBalance() + overdraft >= x)
             setBalance(getBalance() - x );
-        else System.out.println("Withdraw not possible!");
+        else {throw new OverdraftLimitExceededException();}
     }
 
     public void printReport() {

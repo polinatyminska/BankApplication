@@ -1,4 +1,6 @@
 package com.bankApplication;
+import com.com.exception.OverdraftLimitExceededException;
+
 import java.util.*;
 import java.util.ArrayList;
 
@@ -43,7 +45,7 @@ public class Client implements  Report{
     public void deposit (float x) {
         activeAccount.deposit(x);
     }
-    public void withdraw (float x) {
+    public void withdraw (float x) throws OverdraftLimitExceededException{
         activeAccount.withdraw(x);
     }
     public Account createAccount(String accountType) {
